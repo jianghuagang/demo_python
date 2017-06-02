@@ -8,7 +8,14 @@ __author__ = 'Yefeng'
 # 2. set PYTHONPATH=D:\iHyperDB\PythonSDK
 
 import sys
+import os
+
+# python sdk 需要的库路径
 sys.path.append('C:\\iHyperDB\\PythonSDK')
+
+# python sdk 需要的环境变量
+os.environ['PATH'] = 'C:\\iHyperDB\\executable;' + os.environ["PATH"]
+os.environ['iHyperDB'] = 'C:\\iHyperDB'
 
 import server
 import tagmgr
