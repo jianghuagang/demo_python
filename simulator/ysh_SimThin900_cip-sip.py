@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 __author__ = 'phoenix'
-# ç¨€é…ç½CIP/SIPè®°å½•
+# Ï¡Åä¹ŞCIP/SIP¼ÇÂ¼
 
 import TagSimulator
 import time
@@ -10,18 +10,18 @@ import sys
 
 tag_access = TagSimulator.TagAccess()
 
-# å®šä¹‰ tagname
-tag_thin_cip_ev_begin 		= 'MESPY3_DI_0053'
-tag_thin_cip_ev_end 		= 'MESPY3_DI_0004'
-tag_thin_sip_ev		 		= 'MESPY3_DI_0068'
+# ¶¨Òå tagname
+tag_thin_cip_ev_begin 		= 'IOS.MESPY3_DI_0053'
+tag_thin_cip_ev_end 		= 'IOS.MESPY3_DI_0004'
+tag_thin_sip_ev		 		= 'IOS.MESPY3_DI_0068'
 	
-tag_thin_cip_elec 			= 'MESPY3_AI_0056'
-tag_thin_sip_temp 			= 'MESPY3_AI_0012'
-tag_thin_sip_pres 			= 'MESPY3_AI_0017'
+tag_thin_cip_elec 			= 'IOS.MESPY3_AI_0056'
+tag_thin_sip_temp 			= 'IOS.MESPY3_AI_0012'
+tag_thin_sip_pres 			= 'IOS.MESPY3_AI_0017'
 
-tag_thin_sip_drain_temp_1 	= 'MESPY3_AI_0001'
-tag_thin_sip_drain_temp_2 	= 'MESPY3_AI_0003'
-tag_thin_sip_drain_temp_3 	= 'MESPY3_AI_0006'
+tag_thin_sip_drain_temp_1 	= 'IOS.MESPY3_AI_0001'
+tag_thin_sip_drain_temp_2 	= 'IOS.MESPY3_AI_0003'
+tag_thin_sip_drain_temp_3 	= 'IOS.MESPY3_AI_0006'
 
 
 
@@ -39,15 +39,15 @@ thin_sip_temp_max		= 127
 
 
 
-# è®¡ç®—ç”µå¯¼ç‡
+# ¼ÆËãµçµ¼ÂÊ
 def elec(min, max, tot, idx):
-	return round( min + ( max - min ) / count * idx + random.uniform(-0.5, 0.5) * 0.2 * ( max - min ) / count, 2 )
+	return round( min + ( max - min ) / tot * idx + random.uniform(-0.5, 0.5) * 0.2 * ( max - min ) / tot, 2 )
 
 def sleep():
     time.sleep(1)
 
 
-# å¼€å§‹ cip äº‹ä»¶
+# ¿ªÊ¼ cip ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_cip_ev_begin, 0)
 sleep()
 tag_access.set_tag_value(tag_thin_cip_ev_end, 0)
@@ -63,7 +63,7 @@ sleep()
 tag_access.set_tag_value(tag_thin_cip_elec, thin_cip_elec_begin)
 sleep()
 
-# å†™ç”µå¯¼ç‡ tag
+# Ğ´µçµ¼ÂÊ tag
 for idx in range(1, total_seconds_cip):
     tag_access.set_tag_value(tag_thin_cip_elec, elec(thin_cip_elec_begin, thin_cip_elec_end, total_seconds_cip, idx))
     print tag_thin_cip_elec, '=', tag_access.get_tag_value(tag_thin_cip_elec)
@@ -72,22 +72,22 @@ for idx in range(1, total_seconds_cip):
 tag_access.set_tag_value(tag_thin_cip_elec, thin_cip_elec_end)
 sleep()
 
-# ç»“æŸ cip äº‹ä»¶
+# ½áÊø cip ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_cip_ev_end, 1)
 sleep()
 
-# cipä¿¡å·å¤ä½
+# cipĞÅºÅ¸´Î»
 tag_access.set_tag_value(tag_thin_cip_ev_begin, 0)
 sleep()
 tag_access.set_tag_value(tag_thin_cip_ev_end, 0)
 sleep()
 
 # -----------------------------------------
-# å¼€å§‹ sip äº‹ä»¶
+# ¿ªÊ¼ sip ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_sip_ev, 1)
 sleep()
 
-# å†™ sip tag
+# Ğ´ sip tag
 for t in range(total_seconds_sip):
 	tag_access.set_tag_value(tag_thin_sip_temp, random.randint(thin_sip_temp_min, thin_sip_temp_max))
 	tag_access.set_tag_value(tag_thin_sip_drain_temp_1, random.randint(thin_sip_temp_min, thin_sip_temp_max))
@@ -95,6 +95,7 @@ for t in range(total_seconds_sip):
 	tag_access.set_tag_value(tag_thin_sip_drain_temp_3, random.randint(thin_sip_temp_min, thin_sip_temp_max))
 	tag_access.set_tag_value(tag_thin_sip_pres, round(random.uniform(2.1, 2.7), 2))
 
+	print '-----------------------------»ªÀöÀöµÄ·Ö¸îÏß-----------------------------'
 	print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
 	print tag_thin_sip_drain_temp_1, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_1)
 	print tag_thin_sip_drain_temp_2, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_2)
@@ -104,11 +105,11 @@ for t in range(total_seconds_sip):
 	sleep()
 	random.seed(time.time())
 
-# ç»“æŸ sip äº‹ä»¶
+# ½áÊø sip ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_sip_ev, 0)
 sleep()
 
-# ç»“æŸçˆ¶äº‹ä»¶
+# ½áÊø¸¸ÊÂ¼ş
 # tag_access.set_tag_value(tag_thin_ev, 0)
 # sleep()
 

@@ -27,7 +27,7 @@ import hyperdb
 class TagAccess:
     # 初始化 iHyperDB 连接
     def __init__(self):
-        self.__myserver = server.Server('192.168.100.35', 5678)
+        self.__myserver = server.Server('192.168.100.136', 5678)
         self.__myserver.connect()
         self.__myserver.login('admin', 'admin')
         self.__mytagmgr = tagmgr.TagMgr(self.__myserver)

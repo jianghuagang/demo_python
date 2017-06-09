@@ -8,36 +8,36 @@ import random
 
 tag_access = TagSimulator.TagAccess()
 
-# ÂÆö‰πâ tagname
+# ∂®“Â tagname
 tag_GENERAL_EV				= 'GENERAL_EV'
 
-tag_RM_2222_TEMP			= 'EMS0303T4_303'
-tag_RM_2222_HUMI        	= 'EMS0303H4_305'
-tag_RM_2221_TEMP        	= 'EMS0303T5_303'
-tag_RM_2221_HUMI        	= 'EMS0303H5_305'
-tag_RM_2229_TEMP        	= 'EMS0303T6_303'
-tag_RM_2229_HUMI        	= 'EMS0303H6_305'
-tag_RM_2229_PRESS_DIF   	= 'RM_2229_PRESS_DIF'
-tag_RM_2209_PRESS_DIF   	= 'RM_2209_PRESS_DIF'
-tag_RM_2211_TEMP        	= 'EMS0303T2_303'
-tag_RM_2211_HUMI        	= 'EMS0303H2_305'
-tag_RM_2211_PRESS_DIF   	= 'RM_2211_PRESS_DIF'
-tag_RM_2234_TEMP        	= 'EMS0303T3_303'
-tag_RM_2234_HUMI        	= 'EMS0303H3_305'
-tag_RM_2244_PRESS_DIF   	= 'RM_2244_PRESS_DIF'
+tag_RM_2222_TEMP			= 'IOS.EMS0303T4_303'
+tag_RM_2222_HUMI        	= 'IOS.EMS0303H4_305'
+tag_RM_2221_TEMP        	= 'IOS.EMS0303T5_303'
+tag_RM_2221_HUMI        	= 'IOS.EMS0303H5_305'
+tag_RM_2229_TEMP        	= 'IOS.EMS0303T6_303'
+tag_RM_2229_HUMI        	= 'IOS.EMS0303H6_305'
+tag_RM_2229_PRESS_DIF   	= 'IOS.RM_2229_PRESS_DIF'
+tag_RM_2209_PRESS_DIF   	= 'IOS.RM_2209_PRESS_DIF'
+tag_RM_2211_TEMP        	= 'IOS.EMS0303T2_303'
+tag_RM_2211_HUMI        	= 'IOS.EMS0303H2_305'
+tag_RM_2211_PRESS_DIF   	= 'IOS.RM_2211_PRESS_DIF'
+tag_RM_2234_TEMP        	= 'IOS.EMS0303T3_303'
+tag_RM_2234_HUMI        	= 'IOS.EMS0303H3_305'
+tag_RM_2244_PRESS_DIF   	= 'IOS.RM_2244_PRESS_DIF'
 
 
-time_interval			= 5
+time_interval			= 3
 
 def sleep():
     time.sleep(1)
 
-# ÂºÄÂßãÂÖ¨ÂÖ±‰ø°Âè∑
+# ø™ ºπ´π≤–≈∫≈
 tag_access.set_tag_value(tag_GENERAL_EV, 1)
 print tag_GENERAL_EV, '=', tag_access.get_tag_value(tag_GENERAL_EV)
 sleep()
 
-# ËÆæÁΩÆÊ∏©Â∫¶Êï∞ÊçÆ
+# …Ë÷√Œ¬∂» ˝æ›
 while 1 :
   tag_access.set_tag_value(tag_RM_2222_TEMP			, random.randint(17, 37))
   tag_access.set_tag_value(tag_RM_2222_HUMI        	, random.randint(43, 65))
@@ -45,14 +45,14 @@ while 1 :
   tag_access.set_tag_value(tag_RM_2221_HUMI        	, random.randint(43, 65))
   tag_access.set_tag_value(tag_RM_2229_TEMP        	, random.randint(17, 37))
   tag_access.set_tag_value(tag_RM_2229_HUMI        	, random.randint(43, 65))
-  tag_access.set_tag_value(tag_RM_2229_PRESS_DIF   	, random.randint(10,15))
-  tag_access.set_tag_value(tag_RM_2209_PRESS_DIF   	, random.randint(10,15))
+  #tag_access.set_tag_value(tag_RM_2229_PRESS_DIF   	, random.randint(10,15))
+  #tag_access.set_tag_value(tag_RM_2209_PRESS_DIF   	, random.randint(10,15))
   tag_access.set_tag_value(tag_RM_2211_TEMP        	, random.randint(17, 37))
   tag_access.set_tag_value(tag_RM_2211_HUMI        	, random.randint(43, 65))
-  tag_access.set_tag_value(tag_RM_2211_PRESS_DIF   	, random.randint(10,15))
+  #tag_access.set_tag_value(tag_RM_2211_PRESS_DIF   	, random.randint(10,15))
   tag_access.set_tag_value(tag_RM_2234_TEMP        	, random.randint(17, 37))
   tag_access.set_tag_value(tag_RM_2234_HUMI        	, random.randint(43, 65))
-  tag_access.set_tag_value(tag_RM_2244_PRESS_DIF   	, random.randint(10,15))
+  #tag_access.set_tag_value(tag_RM_2244_PRESS_DIF   	, random.randint(10,15))
 
   print 'set ', tag_RM_2222_TEMP			, ' = ',  tag_access.get_tag_value(tag_RM_2222_TEMP			)
   print 'set ', tag_RM_2222_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2222_HUMI     	)
@@ -60,17 +60,17 @@ while 1 :
   print 'set ', tag_RM_2221_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2221_HUMI     	)
   print 'set ', tag_RM_2229_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2229_TEMP     	)
   print 'set ', tag_RM_2229_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2229_HUMI     	)
-  print 'set ', tag_RM_2229_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2229_PRESS_DIF	)
-  print 'set ', tag_RM_2209_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2209_PRESS_DIF	)
+  #print 'set ', tag_RM_2229_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2229_PRESS_DIF	)
+  #print 'set ', tag_RM_2209_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2209_PRESS_DIF	)
   print 'set ', tag_RM_2211_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2211_TEMP     	)
   print 'set ', tag_RM_2211_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2211_HUMI     	)
-  print 'set ', tag_RM_2211_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2211_PRESS_DIF	)
+  #print 'set ', tag_RM_2211_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2211_PRESS_DIF	)
   print 'set ', tag_RM_2234_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2234_TEMP     	)
   print 'set ', tag_RM_2234_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2234_HUMI     	)
-  print 'set ', tag_RM_2244_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2244_PRESS_DIF	)
+  #print 'set ', tag_RM_2244_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2244_PRESS_DIF	)
 
 
-  print '-----------------------------Âçé‰∏Ω‰∏ΩÁöÑÂàÜÂâ≤Á∫ø-----------------------------'
+  print '-----------------------------ª™¿ˆ¿ˆµƒ∑÷∏Óœﬂ-----------------------------'
   time.sleep(time_interval)
 
 

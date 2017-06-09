@@ -11,15 +11,15 @@ import sys
 tag_access = TagSimulator.TagAccess()
 
 # 定义 tagname
-tag_dens_cip_ev 	= 'MESPY3_DI_0039'
-tag_dens_cip_elec 	= 'MESPY3_AI_0004'
+tag_dens_cip_ev 	= 'IOS.MESPY3_DI_0039'
+tag_dens_cip_elec 	= 'IOS.MESPY3_AI_0004'
 
-tag_dens_sip_ev 	= 'MESPY3_DI_0065'
-tag_dens_sip_temp  	= 'MESPY3_AI_0011'
-tag_dens_sip_pres 	= 'MESPY3_AI_0015'
+tag_dens_sip_ev 	= 'IOS.MESPY3_DI_0065'
+tag_dens_sip_temp  	= 'IOS.MESPY3_AI_0011'
+tag_dens_sip_pres 	= 'IOS.MESPY3_AI_0015'
 
 
-tag_dens_sip_drain_temp	= 'MESPY3_AI_0002'
+tag_dens_sip_drain_temp	= 'IOS.MESPY3_AI_0002'
 
 time_interval			= 1
 total_seconds_cip		= 10

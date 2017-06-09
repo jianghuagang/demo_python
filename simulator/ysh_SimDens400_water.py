@@ -5,12 +5,13 @@ __author__ = 'phoenix'
 import TagSimulator
 import time
 import random
+import sys
 
 tag_access = TagSimulator.TagAccess()
 
-# å®šä¹‰ tagname
-tag_dens_water_ev 		= 'MESPY3_DI_0003'
-tag_dens_weight	 		= 'MESPY3_AI_0020'
+# ¶¨Òå tagname
+tag_dens_water_ev 		= 'IOS.MESPY3_DI_0003'
+tag_dens_weight	 		= 'IOS.MESPY3_AI_0020'
 
 
 time_interval			= 3
@@ -21,7 +22,7 @@ qty_max					= 300
 
 
 
-# ç”Ÿæˆæ•°æ®ï¼Œ
+# Éú³ÉÊı¾İ£¬
 def water(min, max, count, step):
 	return min + ( max - min ) / count * step + random.uniform(-0.5,0.5) * 0.2 * ( max - min ) / count
 
@@ -29,37 +30,37 @@ def sleep():
   time.sleep(1)
 
 
-# å¼€å§‹ WATER äº‹ä»¶
+# ¿ªÊ¼ WATER ÊÂ¼ş
 tag_access.set_tag_value(tag_dens_water_ev, 1)
 print tag_dens_water_ev, '=', tag_access.get_tag_value(tag_dens_water_ev)
 sleep()
 	
-# ç”Ÿæˆåˆå§‹æ•°æ®
+# Éú³É³õÊ¼Êı¾İ
 tag_access.set_tag_value(tag_dens_weight, qty_min)
 print tag_dens_weight, '=', tag_access.get_tag_value(tag_dens_weight)
 sleep()
 
-# ç”Ÿæˆæ•°æ®ï¼Œæœ‰éšæœºé‡ï¼Œ tag
+# Éú³ÉÊı¾İ£¬ÓĞËæ»úÁ¿£¬ tag
 for idx in range(1, total_seconds):
 	tag_access.set_tag_value(tag_dens_weight, water(qty_min, qty_max, total_seconds, idx))
 
 	print tag_dens_weight, '=', tag_access.get_tag_value(tag_dens_weight)
-	print "==============================åä¸½ä¸½çš„åˆ†å‰²çº¿=================================="
+	print "==============================»ªÀöÀöµÄ·Ö¸îÏß=================================="
 	sleep()
 	
-# ç”Ÿæˆæœ€ç»ˆæ•°æ®
+# Éú³É×îÖÕÊı¾İ
 tag_access.set_tag_value(tag_dens_weight, qty_max)
 print tag_dens_weight, '=', tag_access.get_tag_value(tag_dens_weight)
 sleep()
 
-# ç»“æŸ WATER äº‹ä»¶
+# ½áÊø WATER ÊÂ¼ş
 tag_access.set_tag_value(tag_dens_water_ev, 0)
 sleep()
 
 
 random.seed(time.time())
 
-# å†™ sip tag
+# Ğ´ sip tag
 #for t in range(60):
 #    tag_access.set_tag_value(tag_dens_sip_temp, random.randint(121, 127))
 #    print tag_dens_sip_temp, '=', tag_access.get_tag_value(tag_dens_sip_temp)
@@ -76,9 +77,11 @@ random.seed(time.time())
 #    tag_access.set_tag_value(tag_dens_sip_pres, round(random.uniform(2.1, 2.7), 2))
 #    print tag_dens_sip_pres, '=', tag_access.get_tag_value(tag_dens_sip_pres)
 #
-#    print '-----------------------------åä¸½ä¸½çš„åˆ†å‰²çº¿-----------------------------'
+#    print '-----------------------------»ªÀöÀöµÄ·Ö¸îÏß-----------------------------'
 #    time.sleep(time_interval)
 #
-# ç»“æŸ sip äº‹ä»¶
+# ½áÊø sip ÊÂ¼ş
 
-input('Press enter to continue . . .')
+# input('Press enter to continue . . .')
+
+sys.exit(0)

@@ -12,7 +12,7 @@ import msvcrt
 tag_access = TagSimulator.TagAccess()
 
 # 定义 tagname
-tag_dens_trans_ev 		= 'MESPY3_DI_0004'
+tag_dens_trans_ev 		= 'IOS.MESPY3_DI_0004'
 
 time_interval			= 1
 total_seconds			= 60

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# å‚¨æ¶²ç½å¼€å§‹è½¬ç§»ä¿¡å·
+# ´¢Òº¹Ş¿ªÊ¼×ªÒÆĞÅºÅ
 __author__ = 'phoenix'
 
 import TagSimulator
@@ -11,25 +11,25 @@ import msvcrt
 
 tag_access = TagSimulator.TagAccess()
 
-# å®šä¹‰ tagname
-tag_thin_trans_ev 		= 'MESPY3_DI_0037'
+# ¶¨Òå tagname
+tag_thin_trans_ev 		= 'IOS.MESPY3_DI_0037'
 
 time_interval			= 1
 total_seconds			= 60
 
 
-# ç”Ÿæˆæ•°æ®ï¼Œ
+# Éú³ÉÊı¾İ£¬
 def sleep():
   time.sleep(1)
 
 
-# å¼€å§‹ transfer äº‹ä»¶
+# ¿ªÊ¼ transfer ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_trans_ev, 1)
 print tag_thin_trans_ev, '=', tag_access.get_tag_value(tag_thin_trans_ev)
 time.sleep(total_seconds + random.randint(1,8))
 
 
-# ç»“æŸ transfer äº‹ä»¶
+# ½áÊø transfer ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_trans_ev, 0)
 print tag_thin_trans_ev, '=', tag_access.get_tag_value(tag_thin_trans_ev)
 

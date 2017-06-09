@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# æ…æ‹Œä¿¡å·åŠç›¸å…³æ•°æ®
+# ½Á°èĞÅºÅ¼°Ïà¹ØÊı¾İ
 __author__ = 'phoenix'
 
 import TagSimulator
 import time
 import random
+import sys
 
 tag_access = TagSimulator.TagAccess()
 
-# å®šä¹‰ tagname
-tag_thin_mix_ev 			= 'MESPY3_DI_0023'
-tag_thin_mix_rate			= 'MESPY3_AI_0010'
+# ¶¨Òå tagname
+tag_thin_mix_ev 			= 'IOS.MESPY3_DI_0023'
+tag_thin_mix_rate			= 'IOS.MESPY3_AI_0010'
 
 time_interval			= 1
 total_seconds			= 60
@@ -19,7 +20,7 @@ total_seconds			= 60
 qty_min					= 40
 qty_max					= 45
 
-# ç”Ÿæˆæ…æ‹Œçš„æ•°æ®
+# Éú³É½Á°èµÄÊı¾İ
 def mix(min, max):
     random.seed(time.time())
     return round(random.uniform(min, max),2)
@@ -28,20 +29,21 @@ def sleep():
     time.sleep(1)
 
 
-# å¼€å§‹ mix äº‹ä»¶
+# ¿ªÊ¼ mix ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_mix_ev, 1)
 sleep()
 
-# å†™ sip tag
+# Ğ´ sip tag
 for t in range(60):
     tag_access.set_tag_value(tag_thin_mix_rate, mix(qty_min, qty_max))
     print tag_thin_mix_rate, '=', tag_access.get_tag_value(tag_thin_mix_rate)
-    print '-----------------------------åä¸½ä¸½çš„åˆ†å‰²çº¿-----------------------------'
+    print '-----------------------------»ªÀöÀöµÄ·Ö¸îÏß-----------------------------'
     time.sleep(1)
 
-# ç»“æŸ mix äº‹ä»¶
+# ½áÊø mix ÊÂ¼ş
 tag_access.set_tag_value(tag_thin_mix_ev, 0)
 sleep()
 
+#input('Press enter to continue . . .')
 
-input('Press enter to continue . . .')
+sys.exit(0)
