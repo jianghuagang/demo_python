@@ -15,7 +15,7 @@ tag_dens_weight	 		= 'IOS.MESPY3_AI_0020'
 
 
 time_interval			= 3
-total_seconds			= 60
+total_seconds			= 300
 
 qty_min					= 0
 qty_max					= 300

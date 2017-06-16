@@ -17,14 +17,15 @@ tag_RM_2221_TEMP        	= 'IOS.EMS0303T5_303'
 tag_RM_2221_HUMI        	= 'IOS.EMS0303H5_305'
 tag_RM_2229_TEMP        	= 'IOS.EMS0303T6_303'
 tag_RM_2229_HUMI        	= 'IOS.EMS0303H6_305'
-tag_RM_2229_PRESS_DIF   	= 'IOS.RM_2229_PRESS_DIF'
-tag_RM_2209_PRESS_DIF   	= 'IOS.RM_2209_PRESS_DIF'
 tag_RM_2211_TEMP        	= 'IOS.EMS0303T2_303'
 tag_RM_2211_HUMI        	= 'IOS.EMS0303H2_305'
-tag_RM_2211_PRESS_DIF   	= 'IOS.RM_2211_PRESS_DIF'
 tag_RM_2234_TEMP        	= 'IOS.EMS0303T3_303'
 tag_RM_2234_HUMI        	= 'IOS.EMS0303H3_305'
-tag_RM_2244_PRESS_DIF   	= 'IOS.RM_2244_PRESS_DIF'
+
+#tag_RM_2229_PRESS_DIF   	= 'IOS.RM_2229_PRESS_DIF'
+tag_RM_2209_PRESS_DIF   	= 'IOS.EMS0303P1_302'
+tag_RM_2211_PRESS_DIF   	= 'IOS.EMS0303P3_302'
+tag_RM_2244_PRESS_DIF   	= 'IOS.EMS0303P2_302'
 
 
 time_interval			= 3
@@ -39,20 +40,24 @@ sleep()
 
 # 设置温度数据
 while 1 :
-  tag_access.set_tag_value(tag_RM_2222_TEMP			, random.randint(17, 37))
-  tag_access.set_tag_value(tag_RM_2222_HUMI        	, random.randint(43, 65))
-  tag_access.set_tag_value(tag_RM_2221_TEMP        	, random.randint(17, 37))
-  tag_access.set_tag_value(tag_RM_2221_HUMI        	, random.randint(43, 65))
-  tag_access.set_tag_value(tag_RM_2229_TEMP        	, random.randint(17, 37))
-  tag_access.set_tag_value(tag_RM_2229_HUMI        	, random.randint(43, 65))
+  random.seed(time.time())
+  tag_access.set_tag_value(tag_RM_2222_TEMP			, random.randint(22, 25))
+  tag_access.set_tag_value(tag_RM_2222_HUMI        	, random.randint(55, 57))
+  tag_access.set_tag_value(tag_RM_2221_TEMP        	, random.randint(22, 25))
+  tag_access.set_tag_value(tag_RM_2221_HUMI        	, random.randint(55, 57))
+  tag_access.set_tag_value(tag_RM_2229_TEMP        	, random.randint(22, 25))
+  tag_access.set_tag_value(tag_RM_2229_HUMI        	, random.randint(55, 57))
+  tag_access.set_tag_value(tag_RM_2211_TEMP        	, random.randint(22, 25))
+  tag_access.set_tag_value(tag_RM_2211_HUMI        	, random.randint(55, 57))
+  tag_access.set_tag_value(tag_RM_2234_TEMP        	, random.randint(22, 25))
+  tag_access.set_tag_value(tag_RM_2234_HUMI        	, random.randint(55, 57))
+  sleep()
+  
   #tag_access.set_tag_value(tag_RM_2229_PRESS_DIF   	, random.randint(10,15))
-  #tag_access.set_tag_value(tag_RM_2209_PRESS_DIF   	, random.randint(10,15))
-  tag_access.set_tag_value(tag_RM_2211_TEMP        	, random.randint(17, 37))
-  tag_access.set_tag_value(tag_RM_2211_HUMI        	, random.randint(43, 65))
-  #tag_access.set_tag_value(tag_RM_2211_PRESS_DIF   	, random.randint(10,15))
-  tag_access.set_tag_value(tag_RM_2234_TEMP        	, random.randint(17, 37))
-  tag_access.set_tag_value(tag_RM_2234_HUMI        	, random.randint(43, 65))
-  #tag_access.set_tag_value(tag_RM_2244_PRESS_DIF   	, random.randint(10,15))
+  tag_access.set_tag_value(tag_RM_2209_PRESS_DIF   	, random.randint(10,15))
+  tag_access.set_tag_value(tag_RM_2211_PRESS_DIF   	, random.randint(10,15))
+  tag_access.set_tag_value(tag_RM_2244_PRESS_DIF   	, random.randint(10,15))
+  sleep()
 
   print 'set ', tag_RM_2222_TEMP			, ' = ',  tag_access.get_tag_value(tag_RM_2222_TEMP			)
   print 'set ', tag_RM_2222_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2222_HUMI     	)
@@ -60,18 +65,20 @@ while 1 :
   print 'set ', tag_RM_2221_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2221_HUMI     	)
   print 'set ', tag_RM_2229_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2229_TEMP     	)
   print 'set ', tag_RM_2229_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2229_HUMI     	)
-  #print 'set ', tag_RM_2229_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2229_PRESS_DIF	)
-  #print 'set ', tag_RM_2209_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2209_PRESS_DIF	)
   print 'set ', tag_RM_2211_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2211_TEMP     	)
   print 'set ', tag_RM_2211_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2211_HUMI     	)
-  #print 'set ', tag_RM_2211_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2211_PRESS_DIF	)
   print 'set ', tag_RM_2234_TEMP        	, ' = ',  tag_access.get_tag_value(tag_RM_2234_TEMP     	)
   print 'set ', tag_RM_2234_HUMI        	, ' = ',  tag_access.get_tag_value(tag_RM_2234_HUMI     	)
-  #print 'set ', tag_RM_2244_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2244_PRESS_DIF	)
+  sleep()
+  #print 'set ', tag_RM_2229_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2229_PRESS_DIF	)
+  print 'set ', tag_RM_2209_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2209_PRESS_DIF	)
+  print 'set ', tag_RM_2211_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2211_PRESS_DIF	)
+  print 'set ', tag_RM_2244_PRESS_DIF   	, ' = ',  tag_access.get_tag_value(tag_RM_2244_PRESS_DIF	)
 
+  sleep()
 
   print '-----------------------------华丽丽的分割线-----------------------------'
-  time.sleep(time_interval)
+  #time.sleep(time_interval)
 
 
 input('Press enter to continue . . .')

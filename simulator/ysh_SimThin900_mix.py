@@ -17,8 +17,8 @@ tag_thin_mix_rate			= 'IOS.MESPY3_AI_0010'
 time_interval			= 1
 total_seconds			= 60
 
-qty_min					= 40
-qty_max					= 45
+qty_min					= 45
+qty_max					= 50
 
 # 生成搅拌的数据
 def mix(min, max):

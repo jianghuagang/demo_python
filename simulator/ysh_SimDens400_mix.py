@@ -15,10 +15,10 @@ tag_dens_mix_ev 			= 'IOS.MESPY3_DI_0008'
 tag_dens_mix_rate			= 'IOS.MESPY3_AI_0009'
 
 time_interval			= 1
-total_seconds			= 60
+total_seconds			= 300
 
-qty_min					= 40
-qty_max					= 45
+qty_min					= 45
+qty_max					= 50
 
 # 生成搅拌的数据
 def mix(min, max):
@@ -34,7 +34,7 @@ tag_access.set_tag_value(tag_dens_mix_ev, 1)
 sleep()
 
 # 写 sip tag
-for t in range(60):
+for t in range(300):
     tag_access.set_tag_value(tag_dens_mix_rate, mix(qty_min, qty_max))
     print tag_dens_mix_rate, '=', tag_access.get_tag_value(tag_dens_mix_rate)
     print '-----------------------------华丽丽的分割线-----------------------------'

@@ -22,12 +22,12 @@ tag_dens_sip_pres 	= 'IOS.MESPY3_AI_0015'
 tag_dens_sip_drain_temp	= 'IOS.MESPY3_AI_0002'
 
 time_interval			= 1
-total_seconds_cip		= 10
-total_seconds_sip		= 10
+total_seconds_cip		= 3
+total_seconds_sip		= 3
 
 
-dens_cip_elec_begin		= 10
-dens_cip_elec_end		= 0.85
+dens_cip_elec_begin		= 1
+dens_cip_elec_end		= 0.15
 
 dens_sip_temp_min		= 121
 dens_sip_temp_max		= 127

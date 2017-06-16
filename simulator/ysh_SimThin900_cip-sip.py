@@ -15,7 +15,7 @@ tag_thin_cip_ev_begin 		= 'IOS.MESPY3_DI_0053'
 tag_thin_cip_ev_end 		= 'IOS.MESPY3_DI_0004'
 tag_thin_sip_ev		 		= 'IOS.MESPY3_DI_0068'
 	
-tag_thin_cip_elec 			= 'IOS.MESPY3_AI_0056'
+tag_thin_cip_elec 			= 'IOS.MESPY3_AI_0004'
 tag_thin_sip_temp 			= 'IOS.MESPY3_AI_0012'
 tag_thin_sip_pres 			= 'IOS.MESPY3_AI_0017'
 
@@ -26,8 +26,8 @@ tag_thin_sip_drain_temp_3 	= 'IOS.MESPY3_AI_0006'
 
 
 time_interval			= 1
-total_seconds_cip		= 10
-total_seconds_sip		= 10
+total_seconds_cip		= 50
+total_seconds_sip		= 50
 
 
 thin_cip_elec_begin		= 10
