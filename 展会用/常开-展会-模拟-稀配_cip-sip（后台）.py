@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 __author__ = 'phoenix'
-# Ï¡Åä¹ŞCIP/SIP¼ÇÂ¼
+# ç¨€é…ç½CIP/SIPè®°å½•
 
 import TagSimulator
 import time
@@ -10,7 +10,7 @@ import sys
 
 tag_access = TagSimulator.TagAccess()
 
-# ¶¨Òå tagname
+# å®šä¹‰ tagname
 tag_thin_cip_ev_begin 		= 'IOS.MESPY3_DI_0053'
 tag_thin_cip_ev_end 		= 'IOS.MESPY3_DI_0004'
 tag_thin_sip_ev		 		= 'IOS.MESPY3_DI_0068'
@@ -21,14 +21,14 @@ tag_thin_sip_pres 			= 'IOS.MESPY3_AI_0017'
 
 tag_thin_sip_drain_temp_1 	= 'IOS.MESPY3_AI_0001'
 tag_thin_sip_drain_temp_2 	= 'IOS.MESPY3_AI_0003'
-tag_thin_sip_drain_temp_3 	= 'IOS.MESPY3_AI_0006'
+tag_thin_sip_drain_temp_3  	= 'IOS.MESPY3_AI_0006'
 
 
 
 time_interval			= 1
-total_seconds_cip		= 6
-total_seconds_sip		= 6
-total_seconds_ideal		= 3
+total_seconds_cip		= 60
+total_seconds_sip		= 60
+total_seconds_ideal		= 30
 
 
 thin_cip_elec_begin		= 9.8
@@ -40,22 +40,22 @@ thin_sip_temp_max		= 127
 thin_room_temp_min		= 20
 thin_room_temp_max		= 25
 
-total_seconds_sip_normal	= 3
-total_seconds_sip_heating	= 3
-total_seconds_sip_cooling	= 3
+total_seconds_sip_normal	= 30
+total_seconds_sip_heating	= 30
+total_seconds_sip_cooling	= 30
 
 
 
-# ¼ÆËãµçµ¼ÂÊ
+# è®¡ç®—ç”µå¯¼ç‡
 def elec(min, max, tot, idx):
 	return round( min + ( max - min ) / tot * idx + random.uniform(-0.5, 0.5) * 0.2 * ( max - min ) / tot, 2 )
 	
-# Ä£Äâ½µÎÂ£¬Ä£ÄâÉıÎÂ
+# æ¨¡æ‹Ÿé™æ¸©ï¼Œæ¨¡æ‹Ÿå‡æ¸©
 def simu_line(val1, val2, tot, idx):
 	return val1 + ( val2 - val1 ) / tot * ( idx - random.uniform(-0.5, 0.5) * 0.39 )
 
 
-# Ä£Äâ³£ÎÂ
+# æ¨¡æ‹Ÿå¸¸æ¸©
 def simu_random(val1, val2):
 	random.uniform(val1, val2)
 
@@ -64,7 +64,7 @@ def sleep():
 
 
 while 1:
-	# ¿ªÊ¼ cip ÊÂ¼ş
+	# å¼€å§‹ cip äº‹ä»¶
 	tag_access.set_tag_value(tag_thin_cip_ev_begin, 0)
 	sleep()
 	tag_access.set_tag_value(tag_thin_cip_ev_end, 0)
@@ -85,7 +85,7 @@ while 1:
 	tag_access.set_tag_value(tag_thin_cip_elec, thin_cip_elec_begin)
 	sleep()
 
-	# Ğ´µçµ¼ÂÊ tag
+	# å†™ç”µå¯¼ç‡ tag
 	for idx in range(1, total_seconds_cip):
 		tag_access.set_tag_value(tag_thin_cip_elec, elec(thin_cip_elec_begin, thin_cip_elec_end, total_seconds_cip, idx))
 		print tag_thin_cip_elec, '=', tag_access.get_tag_value(tag_thin_cip_elec)
@@ -94,11 +94,11 @@ while 1:
 	tag_access.set_tag_value(tag_thin_cip_elec, thin_cip_elec_end)
 	sleep()
 
-	# ½áÊø cip ÊÂ¼ş
+	# ç»“æŸ cip äº‹ä»¶
 	tag_access.set_tag_value(tag_thin_cip_ev_end, 1)
 	sleep()
 
-	# cipĞÅºÅ¸´Î»
+	# cipä¿¡å·å¤ä½
 	tag_access.set_tag_value(tag_thin_cip_ev_begin, 0)
 	sleep()
 	tag_access.set_tag_value(tag_thin_cip_ev_end, 0)
@@ -110,50 +110,14 @@ while 1:
 
 
 	print '-------------------------------sip normal-------------------------------'
-	# ³£ÎÂÇø
+	# å¸¸æ¸©åŒº
 	for t in range(total_seconds_sip_normal):
 		tag_access.set_tag_value(tag_thin_sip_temp, random.randint(thin_room_temp_min, thin_room_temp_max))
-		tag_access.set_tag_value(tag_thin_sip_drain_temp, random.randint(thin_room_temp_min, thin_room_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_1, random.randint(thin_room_temp_min, thin_room_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_2, random.randint(thin_room_temp_min, thin_room_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_3, random.randint(thin_room_temp_min, thin_room_temp_max))
 		tag_access.set_tag_value(tag_thin_sip_pres, round(random.uniform(0.5, 0.75), 2))
 
-		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
-		print tag_thin_sip_drain_temp, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp)
-		print tag_thin_sip_pres, '=', tag_access.get_tag_value(tag_thin_sip_pres)
-
-		sleep()
-		random.seed(time.time())
-
-
-
-	print '-------------------------------sip heating-------------------------------'
-	# ÉıÎÂÇø
-	for t in range(total_seconds_sip_heating):
-		tag_access.set_tag_value(tag_thin_sip_temp, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
-		tag_access.set_tag_value(tag_thin_sip_drain_temp, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
-		tag_access.set_tag_value(tag_thin_sip_pres, round(simu_line(0.75, 1.98, total_seconds_sip_heating, t), 2))
-
-		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
-		print tag_thin_sip_drain_temp, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp)
-		print tag_thin_sip_pres, '=', tag_access.get_tag_value(tag_thin_sip_pres)
-
-		sleep()
-		random.seed(time.time())	
-	
-	
-	# ---------------------------
-	# ¿ªÊ¼ sip ÊÂ¼ş
-	tag_access.set_tag_value(tag_thin_sip_ev, 1)
-	sleep()
-
-	# Ğ´ sip tag
-	for t in range(total_seconds_sip):
-		tag_access.set_tag_value(tag_thin_sip_temp, random.randint(thin_sip_temp_min, thin_sip_temp_max))
-		tag_access.set_tag_value(tag_thin_sip_drain_temp_1, random.randint(thin_sip_temp_min, thin_sip_temp_max))
-		tag_access.set_tag_value(tag_thin_sip_drain_temp_2, random.randint(thin_sip_temp_min, thin_sip_temp_max))
-		tag_access.set_tag_value(tag_thin_sip_drain_temp_3, random.randint(thin_sip_temp_min, thin_sip_temp_max))
-		tag_access.set_tag_value(tag_thin_sip_pres, round(random.uniform(2.1, 2.7), 2))
-
-		print '-----------------------------»ªÀöÀöµÄ·Ö¸îÏß-----------------------------'
 		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
 		print tag_thin_sip_drain_temp_1, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_1)
 		print tag_thin_sip_drain_temp_2, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_2)
@@ -163,7 +127,51 @@ while 1:
 		sleep()
 		random.seed(time.time())
 
-	# ½áÊø sip ÊÂ¼ş
+
+
+	print '-------------------------------sip heating-------------------------------'
+	# å‡æ¸©åŒº
+	for t in range(total_seconds_sip_heating):
+		tag_access.set_tag_value(tag_thin_sip_temp, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_1, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_2, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_3, round(simu_line(thin_room_temp_max + 2, thin_sip_temp_min - 2, total_seconds_sip_heating, t), 1 ) )
+		tag_access.set_tag_value(tag_thin_sip_pres, round(simu_line(0.75, 1.98, total_seconds_sip_heating, t), 2))
+
+		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
+		print tag_thin_sip_drain_temp_1, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_1)
+		print tag_thin_sip_drain_temp_2, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_2)
+		print tag_thin_sip_drain_temp_3, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_3)
+		print tag_thin_sip_pres, '=', tag_access.get_tag_value(tag_thin_sip_pres)
+
+		sleep()
+		random.seed(time.time())	
+	
+	
+	# ---------------------------
+	# å¼€å§‹ sip äº‹ä»¶
+	tag_access.set_tag_value(tag_thin_sip_ev, 1)
+	sleep()
+
+	# å†™ sip tag
+	for t in range(total_seconds_sip):
+		tag_access.set_tag_value(tag_thin_sip_temp, random.randint(thin_sip_temp_min, thin_sip_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_1, random.randint(thin_sip_temp_min, thin_sip_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_2, random.randint(thin_sip_temp_min, thin_sip_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_3, random.randint(thin_sip_temp_min, thin_sip_temp_max))
+		tag_access.set_tag_value(tag_thin_sip_pres, round(random.uniform(2.1, 2.7), 2))
+
+		print '-----------------------------åä¸½ä¸½çš„åˆ†å‰²çº¿-----------------------------'
+		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
+		print tag_thin_sip_drain_temp_1, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_1)
+		print tag_thin_sip_drain_temp_2, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_2)
+		print tag_thin_sip_drain_temp_3, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_3)
+		print tag_thin_sip_pres, '=', tag_access.get_tag_value(tag_thin_sip_pres)
+
+		sleep()
+		random.seed(time.time())
+
+	# ç»“æŸ sip äº‹ä»¶
 	tag_access.set_tag_value(tag_thin_sip_ev, 0)
 	sleep()
 	
@@ -173,14 +181,18 @@ while 1:
 	
 	
 	print '-------------------------------sip cooling-------------------------------'
-	# ½µÎÂÇø
+	# é™æ¸©åŒº
 	for t in range(total_seconds_sip_cooling):
 		tag_access.set_tag_value(tag_thin_sip_temp, round(simu_line(thin_sip_temp_max - 2, thin_room_temp_max - 2, total_seconds_sip_cooling, t), 0 ) )
-		tag_access.set_tag_value(tag_thin_sip_drain_temp, round(simu_line(thin_sip_temp_max - 2, thin_room_temp_max - 2, total_seconds_sip_cooling, t), 0 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_1, round(simu_line(thin_sip_temp_max - 2, thin_room_temp_max - 2, total_seconds_sip_cooling, t), 0 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_2, round(simu_line(thin_sip_temp_max - 2, thin_room_temp_max - 2, total_seconds_sip_cooling, t), 0 ) )
+		tag_access.set_tag_value(tag_thin_sip_drain_temp_3, round(simu_line(thin_sip_temp_max - 2, thin_room_temp_max - 2, total_seconds_sip_cooling, t), 0 ) )
 		tag_access.set_tag_value(tag_thin_sip_pres, round(simu_line(1.98, 0.75, total_seconds_sip_cooling, t), 2))
 
 		print tag_thin_sip_temp, '=', tag_access.get_tag_value(tag_thin_sip_temp)
-		print tag_thin_sip_drain_temp, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp)
+		print tag_thin_sip_drain_temp_1, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_1)
+		print tag_thin_sip_drain_temp_2, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_2)
+		print tag_thin_sip_drain_temp_3, '=', tag_access.get_tag_value(tag_thin_sip_drain_temp_3)
 		print tag_thin_sip_pres, '=', tag_access.get_tag_value(tag_thin_sip_pres)
 
 		sleep()
@@ -190,7 +202,7 @@ while 1:
 	# ideal time 
 	time.sleep(total_seconds_ideal)
 
-# ½áÊø¸¸ÊÂ¼ş
+# ç»“æŸçˆ¶äº‹ä»¶
 # tag_access.set_tag_value(tag_thin_ev, 0)
 # sleep()
 
