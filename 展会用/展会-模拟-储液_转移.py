@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Ï¡Åä¹Þ¿ªÊ¼×ªÒÆÐÅºÅ
+# Ï¡ï¿½ï¿½Þ¿ï¿½Ê¼×ªï¿½ï¿½ï¿½Åºï¿½
 __author__ = 'phoenix'
 
 import TagSimulator
@@ -11,25 +11,25 @@ import msvcrt
 
 tag_access = TagSimulator.TagAccess()
 
-# ¶¨Òå tagname
+# ï¿½ï¿½ï¿½ï¿½ tagname
 tag_stor_trans_ev 		= 'IOS.MESPY3_DI_0020'
 
 time_interval			= 1
-total_seconds			= 60
+total_seconds			= 11
 
 
-# Éú³ÉÊý¾Ý£¬
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½
 def sleep():
   time.sleep(1)
 
 
-# ¿ªÊ¼ transfer ÊÂ¼þ
+# ï¿½ï¿½Ê¼ transfer ï¿½Â¼ï¿½
 tag_access.set_tag_value(tag_stor_trans_ev, 1)
 print tag_stor_trans_ev, '=', tag_access.get_tag_value(tag_stor_trans_ev)
 time.sleep(total_seconds + random.randint(1,8))
 
 
-# ½áÊø transfer ÊÂ¼þ
+# ï¿½ï¿½ï¿½ï¿½ transfer ï¿½Â¼ï¿½
 tag_access.set_tag_value(tag_stor_trans_ev, 0)
 print tag_stor_trans_ev, '=', tag_access.get_tag_value(tag_stor_trans_ev)
 
